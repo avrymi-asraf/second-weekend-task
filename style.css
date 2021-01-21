@@ -1,0 +1,15 @@
+root {
+}
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* #table {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(auto-fill, 70px);
+  grid-row-gap: 0.5em;
+  grid-column-gap: 1em;
+} */

@@ -1,3 +1,17 @@
+
+## TODO
+* design the table
+* fix the unnecessary row in table
+* change the time format
+* change color on row
+* tasks progrres 
+* input tasks
+* logo change
+* 
+
+
+
+
 # Second Weekend Task
 
 ## General Requirements
@@ -82,3 +96,7 @@ For `tasksFinishedPrecent` for example:
 ## Example for Final Outcome
 
 ![example-outcome](./outcome-example.png)   
+
+
+
+
