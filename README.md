@@ -1,7 +1,6 @@
 
 ## TODO
 * design the table
-* fix the unnecessary row in table
 * change the time format
 * change color on row
 * tasks progrres 
