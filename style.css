@@ -1,10 +1,47 @@
+/* font-family: 'Alegreya Sans', sans-serif;
+font-family: 'Didact Gothic', sans-serif; 
+font-family: 'Exo', sans-serif;   תוכן
+font-family: 'Montserrat', sans-serif; תוכן */
+
 root {
+  background: whitesmoke;
 }
 section {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+table {
+  /* border-spacing: 0.5rem; */
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 5%;
+}
+td,
+th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: center;
+}
+td {
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+}
+
+th {
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  background-color: #54aa76da;
+}
+tr:nth-of-type(even) {
+  background-color: #54aa762a;
+}
+tr:hover td {
+  text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
+  /* background-color: rgba(95, 158, 160, 0.294); */
+}
+
 /* #table {
   width: 80vw;
   display: grid;
