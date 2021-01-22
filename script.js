@@ -10,10 +10,16 @@ class tasks {
   ) {
     // this.nameTask = nameTask;
     this.topic = topic;
-    this.taskFinished = taskFinished;
-    this.taskGiven = taskGiven;
     this.startedAt = new Date(startedAt);
     this.finishedAt = new Date(this.startedAt.getTime() + 3.6e6 * finishedAt);
+    this.taskFinished = taskFinished;
+    this.taskGiven = taskGiven;
+  }
+  get startAtHour() {
+    return this.startedAt.toLocaleTimeString("en-US");
+  }
+  get finishAtHour() {
+    return this.finishedAt.toLocaleTimeString("en-Us");
   }
   totalTimeSpend() {
     this.spendTime = (this.finishedAt - this.startedAt) / 60000 + " minut";
@@ -30,6 +36,8 @@ class tasks {
     this.taskFinished += 1;
   }
 }
+//
+//
 const finishLerning = new tasks("HTML", 10, 7);
 finishLerning.spendAndPrecent();
 const eat = new tasks("eat", 7, 19, 3);
@@ -40,6 +48,7 @@ const coding = new tasks("coding", 5, 14, 2.5);
 coding.spendAndPrecent();
 const run = new tasks("run", 3, 5, 0.5);
 run.spendAndPrecent();
+
 
 //*--------------------------------------variebels
 
@@ -58,15 +67,30 @@ function addToList(objTask) {
 
 //
 //
+//
+
 function taskToRowHtml(task) {
   let rowHtml = "<tr>";
   for (let prop in task) {
-    rowHtml += `<td> ${task[prop]} <td>`;
+    switch (prop) {
+      case "topic":
+      case "taskFinished":
+      case "taskGiven":
+      case "finishedPrecent":
+      case "spendTime":
+        rowHtml += `<td> ${task[prop]} </td>`;
+        break;
+      case "startedAt":
+        rowHtml += `<td> ${task.startAtHour} </td>`;
+        rowHtml += `<td> ${task.finishAtHour} </td>`;
+        break;
+    }
   }
   rowHtml += "</tr>";
-  // console.log(rowHtml);
   return rowHtml;
 }
+//
+//
 //
 //
 function listTasksToPage(listTasks) {
@@ -74,7 +98,7 @@ function listTasksToPage(listTasks) {
   for (let task of listTasks) {
     rowHtmls += taskToRowHtml(task);
   }
-  document.getElementById("table").innerHTML = rowHtmls;
+  document.getElementById("table-body").innerHTML = rowHtmls;
 }
 
 //*--------------------------------------------call the functions
