@@ -1,10 +1,12 @@
 
 ## TODO
-* design the table
-* change the time format
-* change color on row
+* design the table V
+* change the time format V
+* change color on row V
 * tasks progrres 
-* input tasks
+* fix the hover on row
+* 
+* input tasks 
 * logo change
 * 
 
