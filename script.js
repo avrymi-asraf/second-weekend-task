@@ -48,11 +48,13 @@ const coding = new tasks("coding", 5, 14, 2.5);
 coding.spendAndPrecent();
 const run = new tasks("run", 3, 5, 0.5);
 run.spendAndPrecent();
-
+const cook = new tasks("cook", 6, 28, 1);
+cook.spendAndPrecent();
 //*--------------------------------------variebels
 
 const listTasks = [];
 addToList([eat, dance, coding, run]);
+addToList(cook)
 //*-------------------------------------functions
 
 function addToList(objTask) {
@@ -60,8 +62,9 @@ function addToList(objTask) {
     for (let i in objTask) {
       listTasks.push(objTask[i]);
     }
+  } else {
+    listTasks.push(objTask);
   }
-  listTasks.push(objTask);
 }
 
 //
@@ -97,6 +100,8 @@ function taskToRowHtml(task) {
 //
 //
 function listTasksToPage(listTasks) {
+  //push row of table to page
+  //
   let rowHtmls = "";
   for (let task of listTasks) {
     rowHtmls += taskToRowHtml(task);
@@ -104,33 +109,35 @@ function listTasksToPage(listTasks) {
   document.getElementById("table-body").innerHTML = rowHtmls;
 }
 
-function colorFinishPrecent() {
-  let finishPres = document.getElementsByClassName("finishPres");
-  for (let prec of finishPres) {
-    console.log(prec);
+function colorFinishPercent() {
+  //color the column how finished in percent
+  //
+  let finishPrec = document.getElementsByClassName("finishPres");
+  for (let prec of finishPrec) {
+    // console.log(finishPrec)
     prec.style.background = percentToColor(prec.textContent);
   }
 }
 
-function percentToColor(present) {
+function percentToColor(percent) {
   //convert the present as string
   //to color
-  const presentNum = parseFloat(present);
+  const presentNum = parseFloat(percent);
   switch (true) {
     case presentNum > 80:
-      return "#43AA8B";
+      return "#43AA8B50";
       break;
-    case presentNum >= 60:
-      return "#90BE6D";
+    case presentNum > 60:
+      return "#90BE6D50";
       break;
     case presentNum > 40:
-      return "#F9C74F";
+      return "#F9C74F50";
       break;
     case presentNum > 20:
-      return "#F3722C";
+      return "#F3722C50";
       break;
     case presentNum > 0:
-      return "#F94144";
+      return "#F9414450";
       break;
   }
 }
@@ -143,34 +150,48 @@ function colorSpentTime() {
 }
 
 function spendTimeToColor(present) {
-  //convert the present as string
+  //convert the minute as string
   //to color
   const presentNum = parseFloat(present);
   switch (true) {
-    case presentNum > 80:
-      return "#43AA8B";
+    case presentNum > 240:
+      return "#073B4C85";
       break;
-    case presentNum >= 60:
-      return "#90BE6D";
+    case presentNum >= 180:
+      return "#118AB285";
       break;
-    case presentNum > 40:
-      return "#F9C74F";
+    case presentNum > 120:
+      return "#06D6A085";
       break;
-    case presentNum > 20:
-      return "#F3722C";
+    case presentNum > 60:
+      return "#FFD16685";
       break;
     case presentNum > 0:
-      return "#F94144";
+      return "#EF476F85";
       break;
   }
 }
 
+// function chenge
+// document.getElementById("progress-bar").value = 90
+// console.log(document.getElementById('progress-bar').value)
+
+// function updateProgressBar() {
+//   let = avregFinishedTasks;   
+//   for (let tas of  listTasks) {
+//     avregFinishedTasks += parseFloat(tas.finishedPrecent)
+//     console.log(tas.finishedPrecent)
+//   }
+//   avregFinishedTasks = avregFinishedTasks / listTasks.length
+//   document.getElementById("progress-bar").value=avregFinishedTasks
+// }
 
 //*--------------------------------------------call the functions
 //  console.log(taskToRowHtml(run))
 
 window.onload = function what() {
   listTasksToPage(listTasks);
-  colorFinishPrecent();
+  colorFinishPercent();
   colorSpentTime();
+  updateProgressBar();
 };

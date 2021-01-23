@@ -1,0 +1,17 @@
+f{
+    aa:#43aa8b85;
+}
+      return= #43AA8B;
+      break;
+    case presentNum >= 60:
+      return "#90BE6D";
+      break;
+    case presentNum > 40:
+      return "#F9C74F";
+      break;
+    case presentNum > 20:
+      return "#F3722C";
+      break;
+    case presentNum > 0:
+      return "#F94144";
+      break;

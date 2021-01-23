@@ -2,6 +2,9 @@
 font-family: 'Didact Gothic', sans-serif; 
 font-family: 'Exo', sans-serif;   תוכן
 font-family: 'Montserrat', sans-serif; תוכן */
+ */
+
+
 
 root {
   background: whitesmoke;
@@ -10,16 +13,18 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 4vh;
 }
-#title h1{
-  font-family: 'Alegreya Sans', sans-serif;
-  font-size: 60px;
-  padding: 10vh;
+#title h1 {
+  font-family: "Alegreya Sans", sans-serif;
+  font-size: 8vh;
+  padding: 1vh;
+  text-shadow: .1em .1em .2em rgba(0, 0, 0, 0.6);
 }
 table {
   /* border-spacing: 0.5rem; */
   border-collapse: collapse;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
   border-radius: 5%;
 }
 td,
@@ -43,11 +48,12 @@ tr:nth-of-type(even) {
   background-color: #54aa762a;
 }
 tr:hover td {
-  text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
-  text-shadow: 10px 10px 25px rgb(81, 80, 21),
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  /* text-shadow: 10px 10px 25px rgb(81, 80, 21),
     -10px 10px 25px rgb(81,67,21),
     -10px -10px 25px rgb(81,67,21),
-    10px -10px 25px rgb(81,67,21);
+    10px -10px 25px rgb(81,67,21); */
 }
 
 /* #table {
