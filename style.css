@@ -9,13 +9,13 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4vh;
+  padding: 2vh;
   flex-direction: column;
 }
 #title h1 {
   font-family: "Alegreya Sans", sans-serif;
   font-size: 8vh;
-  padding: 1vh;
+  /* padding: 1vh; */
   text-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.6);
 }
 table {
@@ -48,10 +48,10 @@ tr:hover td {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
-h2{
+h2 {
   display: block;
 }
-#progress-section{
+#progress-section {
   display: flex;
   flex-direction: column;
 }
@@ -63,7 +63,54 @@ progress {
   display: block;
   width: 30vw;
   height: 3rem;
-
 }
-progress[value] {
+.input-div {
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  padding: 3rem;
+}
+label {
+  font-family: "Alegreya Sans", sans-serif;
+  font-size: 1.5rem;
+  padding: 0 0 0 2rem;
+}
+input {
+  height: 2rem;
+  width: auto;
+  border-radius: 9%;
+}
+/* 
+button{
+  display: block;
+  align-self: center;
+  height: 3erm;
+  width: auto;
+  font-family: 'Didact Gothic', sans-serif; 
+  font-size: 1.5rem;
+  color:#2a9d8f;
+}
+*/
+button {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Didact Gothic', sans-serif; 
+  font-size: 1.5rem;
+  color: #2a9d8f;
+  text-align: center;
+  transition: all 0.2s;
+}
+button:hover{
+color:#264653;
+background-color:#e9c46a;
+}
+
+.progress-section  h2{
+   font-family: 'Alegreya Sans', sans-serif;
+   font-size: x-large;
 }

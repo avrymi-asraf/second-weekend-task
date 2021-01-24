@@ -35,26 +35,14 @@ class tasks {
     this.taskFinished += 1;
   }
 }
-// const taskName = document.querySelector("#taskName");
-// const timeTask = document.querySelector("#timeTask");
-// const subTask = document.querySelector("#subTask");
-// const subTaskDon = document.querySelector("#subTaskDon");
-// console.log(taskName.value);
+const taskName = document.querySelector("#taskName");
+const timeTask = document.querySelector("#timeTask");
+const subTask = document.querySelector("#subTask");
+const subTaskDon = document.querySelector("#subTaskDon");
 
-// function addTask() {
-//   const nameOfTaskObj = taskName.value;
-//   const timeTaskOfTaskObj = timeTask.value;
-//   const subTaskOfTaskObj = subTask.value;
-//   const subTaskDonOfTaskObj = subTaskDon.value;
-//   // console.log(nameOfTaskObj, startInOfTaskObj, finishedOfTaskObj, subTaskOfTaskObj, subTaskDonOfTaskObj)
-//   const Task = nameOfTaskObj;
-//   // = new tasks(
-//     timeTaskOfTaskObj,
-//     nameOfTaskObj,
-//     subTaskDonOfTaskObj,
-//     subTaskOfTaskObj
-//   );
-// }
+
+
+
 //
 //
 const finishLerning = new tasks("HTML", 10, 7);
@@ -69,13 +57,38 @@ const run = new tasks("run", 3, 5, 0.5);
 run.spendAndPercent();
 const cook = new tasks("cook", 6, 28, 1);
 cook.spendAndPercent();
-//*--------------------------------------variebels
+//*--------------------------------------variables
 
 const listTasks = [];
 addToList([eat, dance, coding, run]);
 addToList(cook);
+
 //*-------------------------------------functions
 
+function addTask() {
+  const nameOfTaskObj = taskName.value;
+  const timeTaskOfTaskObj = timeTask.value;
+  const subTaskOfTaskObj = subTask.value;
+  const subTaskDonOfTaskObj = subTaskDon.value;
+  taskName.value = "";
+  timeTask.value = "";
+  subTask.value = "";
+  subTaskDon.value = "";
+  const nowTask = new tasks(
+    nameOfTaskObj,
+    subTaskDonOfTaskObj,
+    subTaskOfTaskObj,
+    timeTaskOfTaskObj
+  );
+  nowTask.spendAndPercent();
+  listTasks.push(nowTask);
+  listTasksToPage(nowTask);
+  colorFinishPercent();
+  colorSpentTime();
+  updateProgressBar();
+}
+//
+//
 function addToList(objTask) {
   if (Array.isArray(objTask)) {
     for (let i in objTask) {
@@ -85,12 +98,28 @@ function addToList(objTask) {
     listTasks.push(objTask);
   }
 }
-
 //
 //
+function listTasksToPage(listTasks) {
+  //push row of table to page
+  //
+  let rowHtmls;
+  if (Array.isArray(listTasks)) {
+    for (let task of listTasks) {
+      rowHtmls = taskToRowHtml(task);
+      document.getElementById("table-body").appendChild(rowHtmls);
+    }
+  } else {
+    rowHtmls = taskToRowHtml(listTasks);
+    document.getElementById("table-body").appendChild(rowHtmls);
+  }
+}
 //
-
+//
 function taskToRowHtml(task) {
+  //creat row element from task object
+  //
+
   const rowTable = document.createElement("tr");
   for (let prop in task) {
     const dataTable = document.createElement("td");
@@ -103,8 +132,7 @@ function taskToRowHtml(task) {
         dataTable.appendChild(cellText.cloneNode(true));
         rowTable.appendChild(dataTable);
         break;
-      
-      
+
       case "spendTime":
         cellText.textContent = `${task[prop]}`;
         dataTable.appendChild(cellText.cloneNode(true));
@@ -112,19 +140,19 @@ function taskToRowHtml(task) {
         rowTable.appendChild(dataTable);
         console.log(rowTable.textContent);
         break;
-      
-      
+
       case "startedAt":
         cellText.textContent = `${task.startAtHour}`;
         dataTable.appendChild(cellText.cloneNode(true));
         rowTable.appendChild(dataTable);
         break;
+
       case "finishedAt":
         cellText.textContent = `${task.finishAtHour}`;
         dataTable.appendChild(cellText.cloneNode(true));
         rowTable.appendChild(dataTable);
         break;
-      
+
       case "finishedPercent":
         cellText.textContent = `${task[prop]}`;
         // dataTable.cloneNode(cellText);
@@ -134,23 +162,10 @@ function taskToRowHtml(task) {
         break;
     }
   }
-  // console.log(rowTable);
   return rowTable;
 }
 //
 //
-//
-//
-function listTasksToPage(listTasks) {
-  //push row of table to page
-  //
-  let rowHtmls;
-  for (let task of listTasks) {
-    rowHtmls = taskToRowHtml(task);
-    document.getElementById("table-body").appendChild(rowHtmls);
-  }
-}
-
 function colorFinishPercent() {
   //color the column how finished in percent
   //
@@ -159,7 +174,8 @@ function colorFinishPercent() {
     prec.style.background = percentToColor(prec.textContent);
   }
 }
-
+//
+//
 function percentToColor(percent) {
   //convert the present as string
   //to color
@@ -182,14 +198,16 @@ function percentToColor(percent) {
       break;
   }
 }
-
+//
+//
 function colorSpentTime() {
   const spendTimeColum = document.querySelectorAll(".spendTime");
   for (let time of spendTimeColum) {
     time.style.background = spendTimeToColor(time.textContent);
   }
 }
-
+//
+//
 function spendTimeToColor(present) {
   //convert the minute as string
   //to color
@@ -212,20 +230,28 @@ function spendTimeToColor(present) {
       break;
   }
 }
-
+//
+//
 function updateProgressBar() {
+  //update the progressBar depending percent subtask done
+  //
   let avregFinishedTasks = 0;
   for (let tas of listTasks) {
-    avregFinishedTasks += parseFloat(tas.finishedPrecent);
+    avregFinishedTasks += parseFloat(tas.finishedPercent);
   }
   avregFinishedTasks = avregFinishedTasks / listTasks.length;
+  console.log(listTasks.length)
   document.getElementById("progress-bar").value = avregFinishedTasks;
 }
+//
+//
 
 //*--------------------------------------------call the functions
 
-window.onload = function what() {
+window.onload = function load() {
   listTasksToPage(listTasks);
   colorFinishPercent();
   colorSpentTime();
+  updateProgressBar();
 };
+
