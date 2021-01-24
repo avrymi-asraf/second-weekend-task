@@ -92,35 +92,51 @@ function addToList(objTask) {
 
 function taskToRowHtml(task) {
   const rowTable = document.createElement("tr");
-  const dataTable = document.createElement("td");
   for (let prop in task) {
-    console.log(prop)
+    const dataTable = document.createElement("td");
+    const cellText = document.createTextNode("");
+    // console.log(prop);
+    // console.log(rowTable)
     switch (prop) {
       case "topic":
       case "taskFinished":
       case "taskGiven":
-        // dataTable.appendChild(task.prop.textContent);
-        console.log(task.prop);
+        cellText.textContent = `${task[prop]}`;
+        dataTable.appendChild(cellText.cloneNode(true));
         rowTable.appendChild(dataTable);
         break;
+      
+      
       case "spendTime":
-        dataTable.textContent = task.prop;
-        dataTable.getAttribute("class", "spendTime");
+        cellText.textContent = `${task[prop]}`;
+        dataTable.appendChild(cellText.cloneNode(true));
+        dataTable.className += " spendTime";
         rowTable.appendChild(dataTable);
+        console.log(rowTable.textContent);
         break;
+      
+      
       case "startedAt":
-        dataTable.textContent = task.startAtHour;
-        rowTable.appendChild(dataTable);
-        dataTable.textContent = task.startAtHour;
+        cellText.textContent = `${task.startAtHour}`;
+        dataTable.appendChild(cellText.cloneNode(true));
         rowTable.appendChild(dataTable);
         break;
+      case "finishedAt":
+        cellText.textContent = `${task.finishAtHour}`;
+        dataTable.appendChild(cellText.cloneNode(true));
+        rowTable.appendChild(dataTable);
+        break;
+      
       case "finishedPercent":
-        dataTable.textContent = task.prop;
-        dataTable.getAttribute("class", "finishPres");
+        cellText.textContent = `${task[prop]}`;
+        // dataTable.cloneNode(cellText);
+        dataTable.appendChild(cellText.cloneNode(true));
+        dataTable.className += " finishPres";
         rowTable.appendChild(dataTable);
         break;
     }
   }
+  // console.log(rowTable);
   return rowTable;
 }
 //
@@ -130,20 +146,18 @@ function taskToRowHtml(task) {
 function listTasksToPage(listTasks) {
   //push row of table to page
   //
-  let rowHtmls = "";
+  let rowHtmls;
   for (let task of listTasks) {
-    rowHtmls += taskToRowHtml(task);
+    rowHtmls = taskToRowHtml(task);
+    document.getElementById("table-body").appendChild(rowHtmls);
   }
-  document.getElementById("table-body").innerHTML = rowHtmls;
 }
 
 function colorFinishPercent() {
   //color the column how finished in percent
   //
-  let finishPrec = document.getElementsByClassName("finishPres");
-  console.log(finishPrec)
+  let finishPrec = document.querySelectorAll(".finishPres");
   for (let prec of finishPrec) {
-    console.log(prec)
     prec.style.background = percentToColor(prec.textContent);
   }
 }
@@ -172,7 +186,7 @@ function percentToColor(percent) {
 }
 
 function colorSpentTime() {
-  const spendTimeColum = document.getElementsByClassName("spendTime");
+  const spendTimeColum = document.querySelectorAll(".spendTime");
   for (let time of spendTimeColum) {
     time.style.background = spendTimeToColor(time.textContent);
   }
