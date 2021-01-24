@@ -1,17 +1,9 @@
 
-## TODO
-* design the table V
-* change the time format V
-* change color on row V
-* tasks progrres 
-* fix the hover on row
-* 
-* input tasks 
-* logo change
-* 
-
-
-
+## In this table I used in  
+* class, function in class, and getter in calss
+* Date object to definbe and culculte time.
+* default time is 1 hour, and can chenge this. 
+* besic DOM object 
 
 # Second Weekend Task
 
