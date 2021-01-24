@@ -33,6 +33,18 @@
         <tbody id="table-body"></tbody>
       </table>
     </section>
+    <section class="Add-task-section">
+      <div>
+      <label for="task">task name:</label>
+      <input type="text" name="item" id="taskName" />
+      <label for="task">Time task in hour</label>
+      <input type="number" name="item" id="timeTask" />
+      <label for="task">sub task</label>
+      <input type="number" name="item" id="subTask" />
+      <label for="task">sub task done</label>
+      <input type="number" name="item" id="subTaskDon" />
+      <button onclick="addTask()">Add Tasks</button>
+    </div>
     <section class="progress-section">
       <h2>Task Finished</h2>
       <div class="progress-div"><progress max="100" value="80" id="progress-bar"></progress></div>

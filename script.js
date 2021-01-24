@@ -35,6 +35,26 @@ class tasks {
     this.taskFinished += 1;
   }
 }
+// const taskName = document.querySelector("#taskName");
+// const timeTask = document.querySelector("#timeTask");
+// const subTask = document.querySelector("#subTask");
+// const subTaskDon = document.querySelector("#subTaskDon");
+// console.log(taskName.value);
+
+// function addTask() {
+//   const nameOfTaskObj = taskName.value;
+//   const timeTaskOfTaskObj = timeTask.value;
+//   const subTaskOfTaskObj = subTask.value;
+//   const subTaskDonOfTaskObj = subTaskDon.value;
+//   // console.log(nameOfTaskObj, startInOfTaskObj, finishedOfTaskObj, subTaskOfTaskObj, subTaskDonOfTaskObj)
+//   const Task = nameOfTaskObj;
+//   // = new tasks(
+//     timeTaskOfTaskObj,
+//     nameOfTaskObj,
+//     subTaskDonOfTaskObj,
+//     subTaskOfTaskObj
+//   );
+// }
 //
 //
 const finishLerning = new tasks("HTML", 10, 7);
@@ -53,7 +73,7 @@ cook.spendAndPercent();
 
 const listTasks = [];
 addToList([eat, dance, coding, run]);
-addToList(cook)
+addToList(cook);
 //*-------------------------------------functions
 
 function addToList(objTask) {
@@ -71,28 +91,37 @@ function addToList(objTask) {
 //
 
 function taskToRowHtml(task) {
-  let rowHtml = "<tr>";
+  const rowTable = document.createElement("tr");
+  const dataTable = document.createElement("td");
   for (let prop in task) {
+    console.log(prop)
     switch (prop) {
       case "topic":
       case "taskFinished":
       case "taskGiven":
-        rowHtml += `<td> ${task[prop]} </td>`;
+        // dataTable.appendChild(task.prop.textContent);
+        console.log(task.prop);
+        rowTable.appendChild(dataTable);
         break;
       case "spendTime":
-        rowHtml += `<td class="spendTime"> ${task[prop]} </td>`;
+        dataTable.textContent = task.prop;
+        dataTable.getAttribute("class", "spendTime");
+        rowTable.appendChild(dataTable);
         break;
       case "startedAt":
-        rowHtml += `<td> ${task.startAtHour} </td>`;
-        rowHtml += `<td> ${task.finishAtHour} </td>`;
+        dataTable.textContent = task.startAtHour;
+        rowTable.appendChild(dataTable);
+        dataTable.textContent = task.startAtHour;
+        rowTable.appendChild(dataTable);
         break;
       case "finishedPercent":
-        rowHtml += `<td class="finishPres"> ${task.finishedPercent} </td>`;
+        dataTable.textContent = task.prop;
+        dataTable.getAttribute("class", "finishPres");
+        rowTable.appendChild(dataTable);
         break;
     }
   }
-  rowHtml += "</tr>";
-  return rowHtml;
+  return rowTable;
 }
 //
 //
@@ -123,7 +152,6 @@ function percentToColor(percent) {
   //convert the present as string
   //to color
   const percentNum = parseFloat(percent);
-  console.log(percent)
   switch (true) {
     case percentNum > 80:
       return "#43AA8B50";
@@ -173,19 +201,16 @@ function spendTimeToColor(present) {
   }
 }
 
-
 function updateProgressBar() {
-  let avregFinishedTasks = 0;   
-  for (let tas of  listTasks) {
-    avregFinishedTasks += parseFloat(tas.finishedPrecent)
+  let avregFinishedTasks = 0;
+  for (let tas of listTasks) {
+    avregFinishedTasks += parseFloat(tas.finishedPrecent);
   }
-  avregFinishedTasks = avregFinishedTasks / listTasks.length
-  document.getElementById("progress-bar").value=avregFinishedTasks
+  avregFinishedTasks = avregFinishedTasks / listTasks.length;
+  document.getElementById("progress-bar").value = avregFinishedTasks;
 }
 
-
 //*--------------------------------------------call the functions
-
 
 window.onload = function what() {
   listTasksToPage(listTasks);
