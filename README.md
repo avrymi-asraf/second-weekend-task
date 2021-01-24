@@ -4,6 +4,7 @@
 * Date object to definbe and culculte time.
 * default time is 1 hour, and can chenge this. 
 * besic DOM object 
+* progress ber, update by Task percentages completed
 
 # Second Weekend Task
 
