@@ -8,7 +8,6 @@ class tasks {
     finishedAt = 1,
     startedAt = Date.now()
   ) {
-    // this.nameTask = nameTask;
     this.topic = topic;
     this.startedAt = new Date(startedAt);
     this.finishedAt = new Date(this.startedAt.getTime() + 3.6e6 * finishedAt);
@@ -24,12 +23,12 @@ class tasks {
   totalTimeSpend() {
     this.spendTime = (this.finishedAt - this.startedAt) / 60000 + " minut";
   }
-  tasksFinishedPrecent() {
-    this.finishedPrecent =
+  tasksFinishedPercent() {
+    this.finishedPercent =
       Math.floor(this.taskFinished * (100 / this.taskGiven)) + "%";
   }
-  spendAndPrecent() {
-    this.tasksFinishedPrecent();
+  spendAndPercent() {
+    this.tasksFinishedPercent();
     this.totalTimeSpend();
   }
   add() {
@@ -39,17 +38,17 @@ class tasks {
 //
 //
 const finishLerning = new tasks("HTML", 10, 7);
-finishLerning.spendAndPrecent();
+finishLerning.spendAndPercent();
 const eat = new tasks("eat", 7, 19, 3);
-eat.spendAndPrecent();
+eat.spendAndPercent();
 const dance = new tasks("dance", 5, 19, 1);
-dance.spendAndPrecent();
+dance.spendAndPercent();
 const coding = new tasks("coding", 5, 14, 2.5);
-coding.spendAndPrecent();
+coding.spendAndPercent();
 const run = new tasks("run", 3, 5, 0.5);
-run.spendAndPrecent();
+run.spendAndPercent();
 const cook = new tasks("cook", 6, 28, 1);
-cook.spendAndPrecent();
+cook.spendAndPercent();
 //*--------------------------------------variebels
 
 const listTasks = [];
@@ -87,8 +86,8 @@ function taskToRowHtml(task) {
         rowHtml += `<td> ${task.startAtHour} </td>`;
         rowHtml += `<td> ${task.finishAtHour} </td>`;
         break;
-      case "finishedPrecent":
-        rowHtml += `<td class="finishPres"> ${task.finishedPrecent} </td>`;
+      case "finishedPercent":
+        rowHtml += `<td class="finishPres"> ${task.finishedPercent} </td>`;
         break;
     }
   }
@@ -113,8 +112,9 @@ function colorFinishPercent() {
   //color the column how finished in percent
   //
   let finishPrec = document.getElementsByClassName("finishPres");
+  console.log(finishPrec)
   for (let prec of finishPrec) {
-    // console.log(finishPrec)
+    console.log(prec)
     prec.style.background = percentToColor(prec.textContent);
   }
 }
@@ -122,21 +122,22 @@ function colorFinishPercent() {
 function percentToColor(percent) {
   //convert the present as string
   //to color
-  const presentNum = parseFloat(percent);
+  const percentNum = parseFloat(percent);
+  console.log(percent)
   switch (true) {
-    case presentNum > 80:
+    case percentNum > 80:
       return "#43AA8B50";
       break;
-    case presentNum > 60:
+    case percentNum > 60:
       return "#90BE6D50";
       break;
-    case presentNum > 40:
+    case percentNum > 40:
       return "#F9C74F50";
       break;
-    case presentNum > 20:
+    case percentNum > 20:
       return "#F3722C50";
       break;
-    case presentNum > 0:
+    case percentNum > 0:
       return "#F9414450";
       break;
   }
@@ -172,26 +173,22 @@ function spendTimeToColor(present) {
   }
 }
 
-// function chenge
-// document.getElementById("progress-bar").value = 90
-// console.log(document.getElementById('progress-bar').value)
 
-// function updateProgressBar() {
-//   let = avregFinishedTasks;   
-//   for (let tas of  listTasks) {
-//     avregFinishedTasks += parseFloat(tas.finishedPrecent)
-//     console.log(tas.finishedPrecent)
-//   }
-//   avregFinishedTasks = avregFinishedTasks / listTasks.length
-//   document.getElementById("progress-bar").value=avregFinishedTasks
-// }
+function updateProgressBar() {
+  let avregFinishedTasks = 0;   
+  for (let tas of  listTasks) {
+    avregFinishedTasks += parseFloat(tas.finishedPrecent)
+  }
+  avregFinishedTasks = avregFinishedTasks / listTasks.length
+  document.getElementById("progress-bar").value=avregFinishedTasks
+}
+
 
 //*--------------------------------------------call the functions
-//  console.log(taskToRowHtml(run))
+
 
 window.onload = function what() {
   listTasksToPage(listTasks);
   colorFinishPercent();
   colorSpentTime();
-  updateProgressBar();
 };

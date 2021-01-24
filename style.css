@@ -2,11 +2,7 @@
 font-family: 'Didact Gothic', sans-serif; 
 font-family: 'Exo', sans-serif;   תוכן
 font-family: 'Montserrat', sans-serif; תוכן */
- */
-
-
-
-root {
+*/ root {
   background: whitesmoke;
 }
 section {
@@ -14,12 +10,13 @@ section {
   justify-content: center;
   align-items: center;
   padding: 4vh;
+  flex-direction: column;
 }
 #title h1 {
   font-family: "Alegreya Sans", sans-serif;
   font-size: 8vh;
   padding: 1vh;
-  text-shadow: .1em .1em .2em rgba(0, 0, 0, 0.6);
+  text-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.6);
 }
 table {
   /* border-spacing: 0.5rem; */
@@ -50,17 +47,23 @@ tr:nth-of-type(even) {
 tr:hover td {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  /* text-shadow: 10px 10px 25px rgb(81, 80, 21),
-    -10px 10px 25px rgb(81,67,21),
-    -10px -10px 25px rgb(81,67,21),
-    10px -10px 25px rgb(81,67,21); */
 }
+h2{
+  display: block;
+}
+#progress-section{
+  display: flex;
+  flex-direction: column;
+}
+progress {
+  /* color: #e36414; */
+  /* background-color: white; */
+  /* border-radius: 10px; */
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; */
+  display: block;
+  width: 30vw;
+  height: 3rem;
 
-/* #table {
-  width: 80vw;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(auto-fill, 70px);
-  grid-row-gap: 0.5em;
-  grid-column-gap: 1em;
-} */
+}
+progress[value] {
+}
