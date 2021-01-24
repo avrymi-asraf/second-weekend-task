@@ -95,8 +95,6 @@ function taskToRowHtml(task) {
   for (let prop in task) {
     const dataTable = document.createElement("td");
     const cellText = document.createTextNode("");
-    // console.log(prop);
-    // console.log(rowTable)
     switch (prop) {
       case "topic":
       case "taskFinished":
