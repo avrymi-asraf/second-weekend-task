@@ -1,16 +1,6 @@
-
-## TODO
-* design the table V
-* change the time format V
-* change color on row V
-* tasks progrres 
-* fix the hover on row
-* 
-* input tasks 
-* logo change
-* 
-
-
+## In this table I used in
+* progress bar, clculete the average of how meny we finihed from all tasks
+* can add new tasks
 
 
 # Second Weekend Task
